@@ -5,8 +5,10 @@ import CapsLock from './components/CapsLock';
 import Contador from './components/Contador';
 import TemplasteExpression from './components/TemplateExpression';
 import Events from './components/Events';
+import Challange from './components/Challange';
 // styles / css
 import './App.css';
+
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
     <Contador/>
     <TemplasteExpression/>
     <Events/>
-    
+    <Challange/>
     </div>
   );
 }
