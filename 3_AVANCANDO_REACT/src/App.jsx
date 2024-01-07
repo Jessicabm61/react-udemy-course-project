@@ -3,6 +3,7 @@ import ListaCarros from './components/ListaCarros'
 import ListaCarrosJson from './components/ListaCarrosJson'
 import ListaCondicional from './components/ListaCondicional'
 import ListaKey from './components/ListaKey'
+import Condicionais from './components/Condicionais'
 //Import CSS
 import './App.css'
 
@@ -36,6 +37,9 @@ function App() {
       </div>
       <div>
         <ListaKey/>
+      </div>
+      <div>
+        <Condicionais/>
       </div>
     </div>
   )
