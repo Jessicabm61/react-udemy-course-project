@@ -7,6 +7,9 @@ import ListaKey from './components/ListaKey'
 import Condicionais from './components/Condicionais'
 import Props from './components/Props'
 import CarDetails from './components/CarDetails'
+import Fragments from './components/Fragments'
+import Children from './components/Children'
+import PassaFuncaoComoPropriedade from './components/PassaFuncaoComoPropriedade'
 //Import CSS
 import './App.css'
 
@@ -22,6 +25,9 @@ function App() {
   { marca: "Fusca", modelo: 'fusquinha', ano: 2000 },
   { marca: "Uno", modelo: 'uninho', ano: 2003 }]
 
+  function ImprimirConsole(){
+    console.log('Imprime isso')
+  }
 
   const [nameUser] = useState('Jéssica')
   return (
@@ -72,7 +78,21 @@ function App() {
         ))}
       </div>
 
+      <div>
+        {/*Fragments*/}
+        <Fragments /></div>
 
+
+      <div>
+        {/*Children*/}
+        <Children>
+          <h1>Esse é o título do container</h1>
+        </Children>
+      </div>
+      <div>
+        {/*função com prop*/}
+        <PassaFuncaoComoPropriedade funcao ={ImprimirConsole}/>
+      </div>
     </div>
 
   )
