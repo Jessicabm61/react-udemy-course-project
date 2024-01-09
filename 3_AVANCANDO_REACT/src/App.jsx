@@ -29,7 +29,7 @@ function App() {
   { marca: "Uno", modelo: 'uninho', ano: 2003 }]
 
   const Pessoas = [
-    { id: 2, nome: "Bob", idade: 25, profissao: "Designer" },
+    { id: 2, nome: "Pink", idade: 25, profissao: "Designer" },
     { id: 1, nome: "Alice", idade: 30, profissao: "Engenheira" },
     { id: 3, nome: "Carol", idade: 35, profissao: "Professor" },
     { id: 4, nome: "David", idade: 28, profissao: "Programador" }
