@@ -10,6 +10,8 @@ import CarDetails from './components/CarDetails'
 import Fragments from './components/Fragments'
 import Children from './components/Children'
 import PassaFuncaoComoPropriedade from './components/PassaFuncaoComoPropriedade'
+import Counter from './components/Counter'
+import Display from './components/Display'
 //Import CSS
 import './App.css'
 
@@ -25,8 +27,17 @@ function App() {
   { marca: "Fusca", modelo: 'fusquinha', ano: 2000 },
   { marca: "Uno", modelo: 'uninho', ano: 2003 }]
 
-  function ImprimirConsole(){
+  function ImprimirConsole() {
     console.log('Imprime isso')
+  }
+
+  let [count, setCount] = useState(0)
+
+  function handleIncrement() {
+    setCount((prev) => {
+      return prev + 1;
+    }
+    )
   }
 
   const [nameUser] = useState('Jéssica')
@@ -91,8 +102,14 @@ function App() {
       </div>
       <div>
         {/*função com prop*/}
-        <PassaFuncaoComoPropriedade funcao ={ImprimirConsole}/>
+        <PassaFuncaoComoPropriedade funcao={ImprimirConsole} />
       </div>
+      <div>
+        {/*State Lift*/}
+        <Counter onIncrement={handleIncrement} />
+        <Display count={count} />
+      </div>
+
     </div>
 
   )
