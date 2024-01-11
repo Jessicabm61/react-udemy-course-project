@@ -1,7 +1,8 @@
 import './App.css'
 import {useState} from 'react'
-//import {WordList} from './data/Words.js'
 
+//Importação das categorias
+import wordCategories from './data/Words.js'
 
 //Importação de componentes
 import StartGame from './components/StartGame'
@@ -15,9 +16,33 @@ const stage = [{id:1, name: 'start'},
 
 function App() {
 
+  {/*Estágios do jogo*/}
   const [gameStage, setGameStage] = useState(stage[0].name)
 
+  {/*Categoria e palavra escolhida*/}
+  const [pickageCategory, setPickageCategory] = useState('')
+  const [pickageWord, setPickageWord] = useState('')
+  const [letters, setLetters] = useState([])
+
+  {/*Funções que escolhem a palavra e a categoria*/}
+  const pickWordCategory = () => {
+    const categories = Object.keys(wordCategories)
+    const category = categories[Math.floor(Math.random() * Object.keys(categories).length)] 
+    const wordsArray = wordCategories[category];
+    const word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    
+    return({category, word})
+  }
+ 
   const startGame = () =>{
+
+    const {word, category} = pickWordCategory()
+
+    let wordLetters = word.split('')
+    wordLetters = wordLetters.map((l) => l.toUpperCase())
+    setPickageCategory(category)
+    setPickageWord(wordLetters)
+    
     setGameStage(stage[1].name)
   }
 
