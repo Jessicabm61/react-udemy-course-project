@@ -25,7 +25,7 @@ function App() {
   const [letters, setLetters] = useState([]) //Letras da palavra gerada convertida com Split
 
   const[guessLetters, setGuessLetters] = useState('') //Letras Corretas
-  const[wrongLetters, setwrongLetters] = useState([]) //Letras Erradas
+  const[wrongLetters, setWrongLetters] = useState([]) //Letras Erradas
   const[guess, setGuess] = useState(3) //Tentativas
   const[score, setScore] = useState(0) //Pontuação
 
@@ -55,16 +55,17 @@ function App() {
   }
 
   const verifyLetter = (letter) => {
-    const normalizeLetter = letter.toUpperCase
+    const normalizeLetter = letter.toUpperCase()
 
     if(guessLetters.includes(letter) || wrongLetters.includes(normalizeLetter )) {
       return;
     }
 
     if(letters.includes(normalizeLetter)){
-      setGuessLetters(normalizeLetter)
+      setGuessLetters((prevGuessLetters) => [prevGuessLetters, normalizeLetter])
     } else {
-
+      setWrongLetters((prevWrongLetters) => [...prevWrongLetters, normalizeLetter]);
+      console.log(wrongLetters)
     }
   }
 
