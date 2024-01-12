@@ -8,7 +8,7 @@ const wordCategories = {
     Transportes: ['Carro', 'Avião', 'Bicicleta', 'Navio', 'Ônibus'],
     Alimentos: ['Pizza', 'Hamburguer', 'Sushi', 'Salada', 'Chocolate'],
     InstrumentosMusicais: ['Violino', 'Piano', 'Guitarra', 'Flauta', 'Bateria'],
-    EstaçõesdoAno: ['Verão', 'Inverno', 'Outono', 'Primavera'],
+    EstaçõesDoAno: ['Verão', 'Inverno', 'Outono', 'Primavera'],
   };
   
   export default wordCategories;

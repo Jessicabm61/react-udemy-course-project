@@ -20,9 +20,14 @@ function App() {
   const [gameStage, setGameStage] = useState(stage[0].name)
 
   {/*Categoria e palavra escolhida*/}
-  const [pickageCategory, setPickageCategory] = useState('')
-  const [pickageWord, setPickageWord] = useState('')
-  const [letters, setLetters] = useState([])
+  const [pickageCategory, setPickageCategory] = useState('') //Categoria escolhida
+  const [pickageWord, setPickageWord] = useState('') //Palavra gerada
+  const [letters, setLetters] = useState([]) //Letras da palavra gerada convertida com Split
+
+  const[guessLetters, setGuessLetters] = useState('') //Letras Corretas
+  const[wrongLetters, setwrongLetters] = useState([]) //Letras Erradas
+  const[guess, setGuess] = useState(3) //Tentativas
+  const[score, setScore] = useState(0) //Pontuação
 
   {/*Funções que escolhem a palavra e a categoria*/}
   const pickWordCategory = () => {
@@ -40,23 +45,37 @@ function App() {
 
     let wordLetters = word.split('')
     wordLetters = wordLetters.map((l) => l.toUpperCase())
+
+    {/*fill states*/}
     setPickageCategory(category)
-    setPickageWord(wordLetters)
+    setPickageWord(word)
+    setLetters(wordLetters)
     
     setGameStage(stage[1].name)
   }
 
-  const verifyLetter = () => {
-    setGameStage(stage[2].name)
+  const verifyLetter = (letter) => {
+    const normalizeLetter = letter.toUpperCase
+
+    if(guessLetters.includes(letter) || wrongLetters.includes(normalizeLetter )) {
+      return;
+    }
+
+    if(letters.includes(normalizeLetter)){
+      setGuessLetters(normalizeLetter)
+    } else {
+
+    }
   }
 
   const retry = () => {
     setGameStage(stage[0].name)
   }
+
   return (
     <div className="App">
       {gameStage === "start" && <StartGame startGame={startGame}/>}
-      {gameStage === "game" && <Game verifyLetter={verifyLetter}/>}
+      {gameStage === "game" && <Game verifyLetter={verifyLetter} pickageCategory={pickageCategory} pickageWord={pickageWord} guessLetters={guessLetters} wrongLetters={wrongLetters} guess={guess} score={score} letters={letters} setGuessLetters={setGuessLetters}/>}
       {gameStage === "end" && <End retry={retry}/>}
     </div>
   )
