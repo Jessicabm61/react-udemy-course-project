@@ -48,7 +48,6 @@ const Game = ({verifyLetter,
         <form onSubmit={handleLetter}>
           <input type="text" name="letter" maxLength="1" required onChange={(e) => setLetter(e.target.value)} value={letter} ref={letterUseRef}></input>
           <button>jogar!</button>
-          {console.log(guessLetters)}
         </form>
       </div>
       <div className="wrongLettersContainer">

@@ -1,5 +1,5 @@
 import './App.css'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 //Importação das categorias
 import wordCategories from './data/Words.js'
@@ -14,6 +14,8 @@ const stage = [{id:1, name: 'start'},
                {id:2, name: 'game'},
                {id:3, name: 'end'}]
 
+const guessesQty = 4
+
 function App() {
 
   {/*Estágios do jogo*/}
@@ -26,7 +28,7 @@ function App() {
 
   const[guessLetters, setGuessLetters] = useState('') //Letras Corretas
   const[wrongLetters, setWrongLetters] = useState([]) //Letras Erradas
-  const[guess, setGuess] = useState(3) //Tentativas
+  const[guess, setGuess] = useState(guessesQty) //Tentativas
   const[score, setScore] = useState(0) //Pontuação
 
   {/*Funções que escolhem a palavra e a categoria*/}
@@ -57,19 +59,35 @@ function App() {
   const verifyLetter = (letter) => {
     const normalizeLetter = letter.toUpperCase()
 
-    if(guessLetters.includes(letter) || wrongLetters.includes(normalizeLetter )) {
+    if(guessLetters.includes(normalizeLetter) || wrongLetters.includes(normalizeLetter)) {
       return;
     }
 
     if(letters.includes(normalizeLetter)){
-      setGuessLetters((prevGuessLetters) => [prevGuessLetters, normalizeLetter])
+      setGuessLetters((actualGuessLetters) => [...actualGuessLetters, normalizeLetter])
     } else {
-      setWrongLetters((prevWrongLetters) => [...prevWrongLetters, normalizeLetter]);
-      console.log(wrongLetters)
+      setWrongLetters((actualWrongLetters) => [...actualWrongLetters, normalizeLetter]);
+    
+      setGuess((actualGuess) => (actualGuess - 1))
     }
   }
 
+  function clearLeterState(){
+    setGuessLetters([0])
+    setWrongLetters([0])
+  }
+
+  useEffect( ()=> {
+    if(guess <=0) {
+      clearLeterState();
+      setGameStage(stage[2].name)
+    }
+    
+  },[guess])
+
   const retry = () => {
+    setGuess(guessesQty)
+    setScore(0)
     setGameStage(stage[0].name)
   }
 
