@@ -30,16 +30,11 @@ button:hover{
   background: #D4D3DD;
 }
 
-/*320px - 480px = mobile*/
-@media(max-width: 480px){
-  body{
-    font-family: 'Courier New', Courier, monospace;
-    padding: 0;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background: linear-gradient(180deg, #E0EAFC 0%, #4CA1AF 100%);
-    color: #3a7c86
+/*até 360px = mobile*/
+@media(max-width: 600px){
+  button {
+    border-radius: 25px;
+    padding: 8px;
+    font-size: 0.8rem;
   }
 }
