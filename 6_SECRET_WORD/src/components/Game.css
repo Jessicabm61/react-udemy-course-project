@@ -66,3 +66,43 @@ p{
     margin: 0;
     padding: 0;
 }
+
+/*320px - 480px = mobile*/
+@media(max-width: 480px){
+    p{
+        font-size: 18px;
+    }
+    .letter, .blankSquare{
+        font-size: 45px;
+        color: #302b63;
+        background-color: white;
+        height: 25px;
+        width: 25px;
+        border: 3px solid #302b63;
+        line-height: 1.5;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 10px
+    }
+
+    .letterContainer input{
+        width: 35px;
+        height: 35px;
+        border-radius: 10px;
+        border: 3px solid #302b63;
+        text-align: center;
+        font-size: 10px;
+        font-weight: bold;
+        color: #302b63;
+        text-transform: uppercase;
+    }
+
+    .wordContainer {
+        display: flex;
+        border: 15px solid #302b63;
+        padding: 8px;
+        margin: 1.5em;
+        justify-content: center;
+    }
+    
+  }

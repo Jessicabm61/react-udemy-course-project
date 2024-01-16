@@ -5,7 +5,10 @@ html,body{
 body{
   font-family: 'Courier New', Courier, monospace;
   padding: 0;
-  margin: 0;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   background: linear-gradient(180deg, #E0EAFC 0%, #4CA1AF 100%);
   color: #3a7c86
 }
