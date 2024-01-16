@@ -77,6 +77,7 @@ function App() {
   function clearLeterState(){
     setGuessLetters([])
     setWrongLetters([])
+    setGuess(guessesQty)
   }
 
   useEffect(()=> {
@@ -89,7 +90,11 @@ function App() {
 
   useEffect(() => {
     const uniqueLetters = [... new Set (letters)]
+    console.log(uniqueLetters)
     if(guessLetters.length === uniqueLetters.length) {
+      console.log("passou no if")
+      console.log(guessLetters.length)
+      console.log(uniqueLetters.length)
       setScore((atualScore) => (atualScore += 100))
       startGame()
     }
