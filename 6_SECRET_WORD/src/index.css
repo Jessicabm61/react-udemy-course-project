@@ -32,9 +32,5 @@ button:hover{
 
 /*até 360px = mobile*/
 @media(max-width: 600px){
-  button {
-    border-radius: 25px;
-    padding: 8px;
-    font-size: 0.8rem;
-  }
+
 }
