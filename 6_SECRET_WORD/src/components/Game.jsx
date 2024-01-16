@@ -1,8 +1,8 @@
 import React from 'react'
 import "./Game.css"
-import {useState, useRef} from 'react'
+import { useState, useRef } from 'react'
 
-const Game = ({verifyLetter,
+const Game = ({ verifyLetter,
   pickageCategory,
   pickageWord,
   guessLetters,
@@ -10,13 +10,13 @@ const Game = ({verifyLetter,
   wrongLetters,
   guess,
   score,
-  letters}) => {
+  letters }) => {
 
   const [letter, setLetter] = useState('')
   const letterUseRef = useRef(null)
 
 
-  const handleLetter = (e) =>{
+  const handleLetter = (e) => {
     e.preventDefault()
     //Envia a variável letter para o componente APP
     verifyLetter(letter)
@@ -36,12 +36,12 @@ const Game = ({verifyLetter,
         <p>Você ainda tem {guess} tentativas</p>
       </h3>
       <div className="wordContainer">
-        {letters.map((letter, indice) =>(
-         guessLetters.includes(letter) ? (
-          <span className="letter" key={indice}>{letter}</span>
+        {letters.map((letter, indice) => (
+          guessLetters.includes(letter) ? (
+            <span className="letter" key={indice}>{letter}</span>
           ) : (
-          <span className="blankSquare" key={indice}></span>)
-          ))}
+            <span className="blankSquare" key={indice}></span>)
+        ))}
       </div>
       <div className="letterContainer">
         <p>Tente advinhar uma letra da palavra:</p>
@@ -52,10 +52,9 @@ const Game = ({verifyLetter,
       </div>
       <div className="wrongLettersContainer">
         <p>Letras já utilizadas:</p>
-        {wrongLetters.map((letter, index) =>(
-          <span key={index}>{letter}, </span>
-        ))}
-
+            {wrongLetters.map((letter, index) => (
+              <span key={index}>{letter}, </span>
+            ))}
       </div>
     </div>
   )

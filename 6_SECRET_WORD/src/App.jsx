@@ -1,5 +1,5 @@
 import './App.css'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useCallback} from 'react'
 
 //Importação das categorias
 import wordCategories from './data/Words.js'
@@ -26,7 +26,7 @@ function App() {
   const [pickageWord, setPickageWord] = useState('') //Palavra gerada
   const [letters, setLetters] = useState([]) //Letras da palavra gerada convertida com Split
 
-  const[guessLetters, setGuessLetters] = useState('') //Letras Corretas
+  const[guessLetters, setGuessLetters] = useState([]) //Letras Corretas
   const[wrongLetters, setWrongLetters] = useState([]) //Letras Erradas
   const[guess, setGuess] = useState(guessesQty) //Tentativas
   const[score, setScore] = useState(0) //Pontuação
@@ -41,8 +41,10 @@ function App() {
     return({category, word})
   }
  
-  const startGame = () =>{
-
+  const startGame = useCallback(() =>{
+    
+    clearLeterState()
+    
     const {word, category} = pickWordCategory()
 
     let wordLetters = word.split('')
@@ -54,7 +56,7 @@ function App() {
     setLetters(wordLetters)
     
     setGameStage(stage[1].name)
-  }
+  },[pickWordCategory])
 
   const verifyLetter = (letter) => {
     const normalizeLetter = letter.toUpperCase()
@@ -73,17 +75,25 @@ function App() {
   }
 
   function clearLeterState(){
-    setGuessLetters([0])
-    setWrongLetters([0])
+    setGuessLetters([])
+    setWrongLetters([])
   }
 
-  useEffect( ()=> {
+  useEffect(()=> {
     if(guess <=0) {
       clearLeterState();
       setGameStage(stage[2].name)
     }
     
   },[guess])
+
+  useEffect(() => {
+    const uniqueLetters = [... new Set (letters)]
+    if(guessLetters.length === uniqueLetters.length) {
+      setScore((atualScore) => (atualScore += 100))
+      startGame()
+    }
+  },[guessLetters, letters, startGame])
 
   const retry = () => {
     setGuess(guessesQty)
@@ -95,7 +105,7 @@ function App() {
     <div className="App">
       {gameStage === "start" && <StartGame startGame={startGame}/>}
       {gameStage === "game" && <Game verifyLetter={verifyLetter} pickageCategory={pickageCategory} pickageWord={pickageWord} guessLetters={guessLetters} wrongLetters={wrongLetters} guess={guess} score={score} letters={letters} setGuessLetters={setGuessLetters}/>}
-      {gameStage === "end" && <End retry={retry}/>}
+      {gameStage === "end" && <End retry={retry} score={score} pickageWord={pickageWord}/>}
     </div>
   )
 }
