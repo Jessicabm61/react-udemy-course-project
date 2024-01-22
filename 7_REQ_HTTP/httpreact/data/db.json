@@ -1,0 +1,138 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Camisa",
+      "price": 59.9
+    },
+    {
+      "id": "2",
+      "name": "Calça vermelha",
+      "price": 90
+    },
+    {
+      "id": "3",
+      "name": "Boné aba reta",
+      "price": 29.9
+    },
+    {
+      "id": "5117"
+    },
+    {
+      "id": "8dc1"
+    },
+    {
+      "id": "08a5"
+    },
+    {
+      "id": "95f7"
+    },
+    {
+      "id": "43ed"
+    },
+    {
+      "id": "c9d1"
+    },
+    {
+      "id": "518d"
+    },
+    {
+      "id": "d065"
+    },
+    {
+      "id": "f255"
+    },
+    {
+      "id": "141f"
+    },
+    {
+      "id": "d960"
+    },
+    {
+      "id": "b947",
+      "name": "teste"
+    },
+    {
+      "id": "1989",
+      "name": "teste"
+    },
+    {
+      "id": "7313",
+      "name": "calça"
+    },
+    {
+      "id": "19fc",
+      "name": "calça"
+    },
+    {
+      "id": "5c3e",
+      "name": "blusa",
+      "price": ""
+    },
+    {
+      "id": "b16f",
+      "name": "lampada",
+      "price": ""
+    },
+    {
+      "id": "1809",
+      "name": "teste",
+      "price": ""
+    },
+    {
+      "id": "4b9b",
+      "name": "teste",
+      "price": ""
+    },
+    {
+      "id": "85d0",
+      "name": "teste",
+      "price": ""
+    },
+    {
+      "id": "86ad",
+      "name": "teste",
+      "price": ""
+    },
+    {
+      "id": "ebf9",
+      "name": "teste",
+      "price": ""
+    },
+    {
+      "id": "d9bb",
+      "name": "teste",
+      "price": ""
+    },
+    {
+      "id": "859b",
+      "name": "teste",
+      "price": "2"
+    },
+    {
+      "id": "d49e",
+      "name": "teste",
+      "price": "2"
+    },
+    {
+      "id": "327d",
+      "name": "amaing",
+      "price": "3"
+    },
+    {
+      "id": "a6b1",
+      "name": "amaing",
+      "price": "3"
+    },
+    {
+      "id": "8142",
+      "name": "teste",
+      "price": "3"
+    },
+    {
+      "id": "0c06",
+      "name": "jessica",
+      "price": "100"
+    }
+  ]
+}
