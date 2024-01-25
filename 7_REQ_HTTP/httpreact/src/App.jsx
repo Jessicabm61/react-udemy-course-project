@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import { useFetch } from './hooks/useFetch'
 
 function App() {
 
@@ -10,49 +11,64 @@ function App() {
   
   
   //1 - Resgatando dados na tela
-  useEffect(() => {
+ // useEffect(() => {
 
-    const fetchData = async () => {
+ //   const fetchData = async () => {
       
-      try {
-        const res = await fetch(url)
-        const data = await res.json()
-        setProducts(data)
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-      
-    }
+   //   try {
+     //   const res = await fetch(url)
+       // const data = await res.json()
+       // setProducts(data)
+      //} catch (error) {
+        //console.error('Erro ao buscar dados:', error);
+     // }
+    //}
     
-    fetchData()
-  }, [products]) //Se deixar [] vaxio ele executa o useEffect apenas uma vez quando o componente é montado
+  //  fetchData()
+  //}, [products]) //Se deixar [] vaxio ele executa o useEffect apenas uma vez quando o componente é montado
   //Da forma que está vai renderizar sempre quando alterar o estado de products
 
+  // 4 Custom hook
+  const {data : itens, httpConfig, loading} = useFetch(url)
+
   //2- Post na API através de "POST"
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault()
     const product = {
       name,
       price,
     }
 
-    const res = await fetch(url, {
-      method: "POST",
-      header: {'content-type': 'application/json'},
-      body: JSON.stringify(product)
-    })
-    
+    //const res = await fetch(url, {
+    //  method: "POST",
+     // headers: {'content-type': 'application/json'},
+      //body: JSON.stringify(product)
+    //})
+
+    // 3 - Carregamento dinâmico
+   // const addProduct = await res.json()
+   // setProducts((prevProducts) => [...prevProducts, addProduct])
+ 
+  // 5 - Refatorando hook
+  httpConfig(product, "POST")
+  
+  setName("")
+  setPrice("")
+
   }
 
   return (
     <div>
      <h1>Lista de produtos</h1>
-     <ul>
-     {products.map((produto) => (
-      <li key= {produto.id}>produto: {produto.name} preço: {produto.price}</li>
-      )
-      )}
-     </ul>
+      {loading && <p>Carregando os produtos....</p>}
+      {!loading && 
+      <ul>
+      {itens && itens.map((produto) => (
+       <li key= {produto.id}>produto: {produto.name} preço: {produto.price}</li>
+       )
+       )}
+      </ul>}
+     
      
      <form onSubmit={handleSubmit} className="add-product">
       <label>
