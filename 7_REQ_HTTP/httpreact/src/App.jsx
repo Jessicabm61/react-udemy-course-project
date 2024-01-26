@@ -1,3 +1,5 @@
+import  './App.css'
+
 import {useState, useEffect} from 'react'
 import { useFetch } from './hooks/useFetch'
 
@@ -29,7 +31,7 @@ function App() {
   //Da forma que está vai renderizar sempre quando alterar o estado de products
 
   // 4 Custom hook
-  const {data : itens, httpConfig, loading} = useFetch(url)
+  const {data : itens, httpConfig, loading, error} = useFetch(url)
 
   //2- Post na API através de "POST"
  const handleSubmit = async (e) => {
@@ -38,7 +40,6 @@ function App() {
       name,
       price,
     }
-
     //const res = await fetch(url, {
     //  method: "POST",
      // headers: {'content-type': 'application/json'},
@@ -57,17 +58,25 @@ function App() {
 
   }
 
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE")
+  }
+
   return (
     <div>
      <h1>Lista de produtos</h1>
+     {/* 7 - state de loading no post */}
       {loading && <p>Carregando os produtos....</p>}
-      {!loading && 
+      {/* 8 - Mensagem de erro */}
+      {error && <p>{error}</p>}
       <ul>
       {itens && itens.map((produto) => (
-       <li key= {produto.id}>produto: {produto.name} preço: {produto.price}</li>
+       <li key= {produto.id}>produto: {produto.name} preço: {produto.price}
+       <button onClick={() => handleRemove(produto.id)}>Deletar</button>
+       </li>
        )
        )}
-      </ul>}
+      </ul>
      
      
      <form onSubmit={handleSubmit} className="add-product">
@@ -79,7 +88,9 @@ function App() {
         <span>preço: </span>
         <input type="number" name="price" onChange={(e) => {setPrice(e.target.value)}} placeholder='Digite o preço'></input>
       </label>
-      <button type="submit">Enviar</button>
+      {/* 7 - state de loading no post */}
+      {loading ? <p>Aguarde!</p> : <input type="submit" value="Criar" />}
+      
      </form>
     </div>
   )
