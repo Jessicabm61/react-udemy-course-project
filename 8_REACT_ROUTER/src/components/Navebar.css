@@ -1,0 +1,21 @@
+nav {
+    display: flex; /*Deixa os links um ao lado do outro*/
+    justify-content: center; /*Centraliza na área*/
+}
+
+nav a {
+    margin: 0 10px;/*Margin nas laterais de 10 nos links*/
+    padding: 5px; 
+    text-decoration: none; /*Retira o _ dos links*/
+    color: #000;
+}
+
+nav a:hover { 
+    color: #ccc; /*Ao clicar no link ele muda de cor*/
+}
+
+.active {
+    background-color: #000; /*Para identificar qual página o usuário está*/
+    color: #ccc
+}
+

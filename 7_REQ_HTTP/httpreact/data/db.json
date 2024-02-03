@@ -1,9 +1,19 @@
 {
   "products": [
     {
-      "id": "8aeb",
-      "name": "",
-      "price": ""
-    }
+      "id": "1",
+      "name": "Teclado",
+      "price": "20"
+    },
+    {
+      "id": "2",
+      "name": "Mouse",
+      "price": "34"
+    },
+    {
+      "id": "3",
+      "name": "Monitor",
+      "price": "56"
+    } 
   ]
 }
