@@ -1,0 +1,12 @@
+.Navbar {
+    padding: 10px;
+  }
+  
+.Nav-link {
+    margin: 4px;
+  }
+  
+.active {
+    background-color: #000; /*Para identificar qual página o usuário está*/
+    color: #ccc
+}
