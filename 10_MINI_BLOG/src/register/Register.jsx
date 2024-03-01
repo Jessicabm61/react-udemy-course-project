@@ -1,4 +1,4 @@
-//Register
+//page Register
 import {useEffect, useState} from 'react'
 import styles from './Register.module.css'
 

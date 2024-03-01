@@ -1,6 +1,6 @@
+//Hook useAuthentication
 import { db } from '../firebase/config'
 
-//Hook useAuthentication
 import {getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
