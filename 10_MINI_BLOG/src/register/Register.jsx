@@ -32,9 +32,6 @@ const Register = () => {
     }
 
     const res = await createUser(user);
-
-    console.log(user) //Imprime no console o usuário criado do formulário
-
   }
 
   //Controla se o authError vai alterar seu estado, caso sim vai setar o erro padrão do sistema com authError
