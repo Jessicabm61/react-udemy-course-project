@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className={styles.about}>
       <h2>Sobre o Mini <span>Blog</span></h2>
-      <p>Este projeto consiste em um blog feito com React no front-end e Firebase no backend</p>
+      <p>Este projeto é um blog desenvolvido utilizando React para o front-end, Firebase para o back-end, e hospedado na Vercel.</p>
       <Link to="posts/create" className="btn">Criar post</Link>
     </div>
   )
