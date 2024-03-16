@@ -13,7 +13,7 @@ const Register = () => {
   const [error, setError] = useState("")
 
   //Chama o hook authentication recebendo o retorno desse hook
-  const {auth, createUser, error: authError, loading} = useAuthentication()
+  const {createUser, error: authError, loading} = useAuthentication()
   
   const handleSubmit = async (e) => {
     e.preventDefault()

@@ -7,6 +7,8 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Login from './login/Login.jsx'
 import Register from './register/Register.jsx'
+import CreatePost from './pages/CreatePost'
+import DashBoard from './pages/DashBoard'
 
 //Importação de componentes
 import Navbar from './components/Navbar.jsx'
@@ -38,6 +40,7 @@ function App() {
   //Quando recebe um usuário "user" ele seta o estado user com esse usuário recebido
   //onAuthStateChanged recebe dois argumentos, o primeiro a autenticação que será controlada
   //E o segundo a função que será executada sempre quando a autenticação mudar
+  //O objeto user é retornado implicitamente pelo Firebase quando a função onAuthStateChanged é chamada
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user)
@@ -49,21 +52,25 @@ function App() {
     return <p>Carregando...</p>
   }
 
+  console.log("Usuário: ", user)
+
   return (
   <div className="App">
     {/*AuthProvider é um componente que provê um contexto
     para toda a aplicação. Ele recebe um valor como propriedade chamada value,
     que é o valor que será disponibilizado através do contexto para todos os
      componentes filhos que consomem esse contexto.*/}
-    <AuthProvider value = { user }>
+    <AuthProvider value = {{ user }}>
       <BrowserRouter>
       <Navbar />
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='register' element={<Register />} />
+          <Route path='/login' element={ !user ? <Login /> : <Navigate to="/" />} />
+          <Route path='/register' element={ !user ? <Register /> : <Navigate to="/" />} />
+          <Route path='/createpost' element={ user ? <CreatePost /> : <Navigate to="/login" />} /> 
+          <Route path='/dashboard' element={ user ? <DashBoard /> : <Navigate to="/login" />} />        
         </Routes>
       </div>
       <Footer />
@@ -73,4 +80,4 @@ function App() {
   )
 }
 
-export default App
+export default App; // Exportando o componente App como o padrão
