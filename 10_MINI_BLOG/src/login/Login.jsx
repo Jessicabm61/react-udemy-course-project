@@ -41,7 +41,7 @@ const login = () => {
   return (
     <div className={styles.login}>
       <h1>Entrar</h1>
-      <p>Faça login para poder utilizar o sistema</p>
+      <p>Faça login para acessar o Blog</p>
       <form onSubmit = {handleSubmit}>
 
         <label>
