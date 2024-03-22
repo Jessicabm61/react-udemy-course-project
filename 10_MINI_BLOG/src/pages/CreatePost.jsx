@@ -1,11 +1,12 @@
 import styles from './CreatePost.module.css'
-import{ useState } from 'react'
-
+import{ useState, useEffect } from 'react'
+import {useNavigate} from 'react-router-dom'
 //Importação dos hooks
 import { useInsertDocument } from "../hooks/useInsertDocument"
 
 //Importação do provider do contexto
 import { useAuthValue } from "../context/AuthContext";
+
 const CreatePost = () => {
   
   const [title, setTitle] = useState()
@@ -13,34 +14,62 @@ const CreatePost = () => {
   const [body,setBody] = useState()
   const [tags, setTags] = useState()
   const [formError, setFormError] = useState()
-
+  
+  
+  
   //Desistruturação da função do hook useInsertDocument
   const {insertDocument, response} = useInsertDocument("posts")
 
-  //Importação valor do contexto
+  //Desistruturação de hooks
   const { user } = useAuthValue()
+  const navigate = useNavigate();
+
+  const restForm = () => {
+    setTitle(null)
+    setImage(null)
+    setBody(null)
+    setTags(null)
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setFormError("")
 
     //Validar image URL
+    try {
+      new URL(image)
+    } catch (error) {
+      setFormError("A imagem precisa ser uma URL.");
+    }
 
     //Criar array de tags
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase())
+
 
     //Checar todos os valores
+    if(!title || !image || !body || !tags) {
+      setFormError("Por favor, preencha todos os campos!")
+      return; // Retorna após definir o erro
+    }
+
+    console.log(tagsArray)
+
     insertDocument({
       title,
       image,
       body,
-      tags,
+      tag : tagsArray,
       uid: user.uid,
       createdBy: user.displayName
     })
 
+    restForm()
     //Redirect to home page
+    navigate("/")
+
   }
-  
+
   return (
     <div className={styles.CreatePost}>
 
@@ -66,7 +95,7 @@ const CreatePost = () => {
       type="url"
       name="imagem"
       required
-      placeholder='Insira o URL da imagem'
+      placeholder='Insira a URL da imagem'
       onChange={(e) => setImage(e.target.value)}
       />
     </label>
@@ -88,11 +117,11 @@ const CreatePost = () => {
       type="text"
       name="tags"
       required
-      placeholder='Insira as tags do post'
+      placeholder='Insira as tags do post separando por vírgulas'
       onChange={(e) => setTags(e.target.value)}
       />
     </label>
-    
+
     {!response.loading && (<button className='btn'>Enviar</button>)}
     {response.loading && (<button className="btn" disabled>Aguarde...</button>)}
     {response.error || formError && (<p className='error'>{response.error || formError}</p>)}
