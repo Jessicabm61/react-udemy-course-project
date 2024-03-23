@@ -1,19 +1,22 @@
 import React from 'react'
-import {useState} from 'react'
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from 'react'
+import { Link } from "react-router-dom";
+import { useFechDocuments } from '../hooks/useFetchDocuments.jsx'
 import styles from "./Home.module.css"
+import PostDetail from '../components/PostDetail.jsx';
 
 const Home = () => {
 
   const [query, setQuery] = useState("")
-  const [posts, setPosts] = useState([])
+  const { documents : posts, loading } = useFechDocuments('posts');
 
-  const handleSubmit = () => {
-  
+
+
+  const handleSubmit = (e) => {
+    
   }
 
   return (
-
     <div className={styles.home}>
       <h1>Veja nossos posts mais recentes</h1>
 
@@ -25,7 +28,10 @@ const Home = () => {
         <button className='btn btn-dark'>Pesquisar</button>
         </form>
       <div className='post-list'>
-        <h1>Posts...</h1>
+      {loading && <p>Carregando...</p>}
+        {posts && posts.map((post) => (
+            <PostDetail key={post.id} post={post}/>
+          ))}
         {posts && posts.length === 0 && (
           <div className={styles.noposts}>
             <p>Não foram encontrados nenhum posts</p>

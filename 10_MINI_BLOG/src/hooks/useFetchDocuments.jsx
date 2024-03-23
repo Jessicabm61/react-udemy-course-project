@@ -2,7 +2,7 @@ import { db } from "../firebase/config"
 import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore"
 import { useState, useEffect } from "react"
 
-export default useFechDocuments => (docCollection, serch=null, uid=null) => {
+export const useFechDocuments = (docCollection, search = null, uid = null) => {
 
     const [documents, setDocuments] = useState()
     const [error, setError] = useState()
@@ -56,9 +56,9 @@ export default useFechDocuments => (docCollection, serch=null, uid=null) => {
             setLoading(false);
           }
         loadData();
-    }, [docCollection, serch, uid, cancelled])
+    }, [docCollection, search, uid, cancelled])
 
-    console.log(documents);
+    console.log("documentos: ", documents);
     
     //deal with memory leak
     useEffect(() => {
