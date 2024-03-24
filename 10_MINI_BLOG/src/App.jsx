@@ -9,6 +9,7 @@ import Login from './login/Login.jsx'
 import Register from './register/Register.jsx'
 import CreatePost from './pages/CreatePost'
 import DashBoard from './pages/DashBoard'
+import Search from './pages/Search'
 
 //Importação de componentes
 import Navbar from './components/Navbar.jsx'
@@ -67,6 +68,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/about' element={<About />} />
+          <Route path='/search' element={<Search />} />
           <Route path='/login' element={ !user ? <Login /> : <Navigate to="/" />} />
           <Route path='/register' element={ !user ? <Register /> : <Navigate to="/" />} />
           <Route path='/posts/create' element={ user ? <CreatePost /> : <Navigate to="/login" />} /> 

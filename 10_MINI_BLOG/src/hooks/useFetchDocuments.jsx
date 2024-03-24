@@ -27,7 +27,7 @@ export const useFechDocuments = (docCollection, search = null, uid = null) => {
               if (search) {
                 q = await query(
                   collectionRef,
-                  where("tags", "array-contains", search),
+                  where("tag", "array-contains", search),
                   orderBy("createdAt", "desc")
                 );
               } else if (uid) {

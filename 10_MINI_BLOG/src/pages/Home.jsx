@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFechDocuments } from '../hooks/useFetchDocuments.jsx'
 import styles from "./Home.module.css"
 import PostDetail from '../components/PostDetail.jsx';
@@ -10,11 +10,14 @@ const Home = () => {
   const [query, setQuery] = useState("")
   const { documents : posts, loading } = useFechDocuments('posts');
 
+  const navigate = useNavigate()
 
 
   const handleSubmit = (e) => {
-    
-  }
+    e.preventDefault()
+    navigate(`search?q=${query}`)
+
+  }   
 
   return (
     <div className={styles.home}>
